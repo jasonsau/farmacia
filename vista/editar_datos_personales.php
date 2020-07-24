@@ -42,21 +42,20 @@ if($_SESSION['us_tipo']==2)
                               </div>
                               <input type = "hidden" id = "id_usuario" value = "<?php echo $_SESSION['usuario'] ?>">
                               <h3 id = "nombre_us" class = "profile-username text-center text-success">
-                                  Nombre
                               </h3>
                               <p id = "apellidos_us" class = "text-muted text-center">
                                   Apellidos
                               </p>
                               <ul class ="list-group list-group-unbordered mb-3">
                                   <li class = "list-group-item">
-                                      <b style ="color: #0B7300">DNI</b><a class ="float-right">12</a>
+                                      <b style ="color: #0B7300">DNI</b><a class ="float-right" id ="dni"></a>
                                   </li>
                                   <li class = "list-group-item">
-                                      <b style ="color: #0b7300">Edad</b><a class ="float-right">12</a>
+                                      <b style ="color: #0b7300" >Edad</b><a class ="float-right" id ="edad"></a>
                                   </li>
                                   <li class = "list-group-item">
                                       <b style ="color: #0b7300">Tipo Usuario</b>
-                                      <span class ="float-right badge badge-primary">Administrador</span>
+                                      <span class ="float-right badge badge-primary" id="administrador"></span>
                                   </li>
                               </ul>
                           </div>
@@ -90,8 +89,8 @@ if($_SESSION['us_tipo']==2)
                                   <i class = "fas fa-pencil-alt mr-1"></i>
                                   Informcion adicional
                               </srtong>
-                              <p id = "iformacion_us" class = "text-muted">12354</p>
-                              <button class = "bg-gradient-danger btn btn-block">Editar</button>
+                              <p id = "informacion_us" class = "text-muted">12354</p>
+                              <button class = "bg-gradient-danger btn btn-block edit">Editar</button> 
                           </div>
                           <div class = "card-footer">
                               <p class = "text-muted">Click Boton si desea e ditar</p>
@@ -104,7 +103,13 @@ if($_SESSION['us_tipo']==2)
                               <h3 class = "card-title">Editar datos Personales</h3>
                           </div>
                           <div class = "card-body">
-                              <form class = "form-horizontal">
+                          <div class = "alert alert-success text-center" id = "editado-span" style='display:none;'>
+                            <span>
+                                <i class = "fas fa-check"></i>
+                                Editado
+                            </span>
+                          </div>
+                              <form class = "form-horizontal" id = "form-usuario"> 
                                   <div class = "row form-group">
                                       <label for = "telefono" class ="col-sm-2 col-form-label">
                                           Telefono
@@ -121,15 +126,6 @@ if($_SESSION['us_tipo']==2)
                                       <div class = "col-sm-10">
                                         <input type = "text" id = "residencia" class = "form-control">
                                       </div>
-                                  </div>
-                                  <div class = "form-group row">
-                                      <label for = "residencia" class ="col-sm-2 col-form-label" >
-                                          Residencia
-                                      </label>
-                                      <div class = "col-sm-10">
-                                        <input type = "test" id = "residencia" class = "form-control">
-                                      </div>
-                                      
                                   </div>
                                   <div class = "form-group row">
                                       <label for = "correo" class ="col-sm-2 col-form-label" >
@@ -159,10 +155,10 @@ if($_SESSION['us_tipo']==2)
                                   </div>
                                   <div class = "from-group row">
                                       <div class = "offset-sm-2 col-sm float-right">
-                                          <button class = "btn btn-block btn-outline-success">Guardar</button>
+                                          <button class = "btn btn-block btn-outline-success guardar">Guardar</button>
                                       </div>
                                   </div>
-                              </form>
+                              </form> 
                           </div>
                           <div class = " card-footer">
                               <p class ="text-muted">Cuidado con ingresar datos errores</p>
@@ -184,4 +180,4 @@ else
 }
 ?>
 
-<script src = "../js/usuario.js"></script>
+<script src = "../js/usuario.js"></script> 
