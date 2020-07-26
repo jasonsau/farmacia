@@ -1,6 +1,6 @@
 $(document).ready(function(){
 
-    buscarDatos();
+ buscarDatos();
     var funcion;
 
     function buscarDatos(valor)
