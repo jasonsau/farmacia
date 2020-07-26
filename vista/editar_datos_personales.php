@@ -6,11 +6,127 @@ if($_SESSION['us_tipo']==2)
     include_once 'layouts/header.php';
 ?>
 
+
   <title>Adm | Editar Datos </title>
   <!-- Tell the browser to be responsive to screen width -->
   <?php
     include_once 'layouts/nav.php';
   ?>
+
+  <!-- Inicio de modal  cambiar pass-->
+<div class="modal fade" id="cambioPassword" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Cambiar Password</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class = "text-center">
+            <img src = "../img/avatar04.png" class ="profile-user-img img-fluid img-circle">
+        </div>
+        <div class = "text-center">
+            <b>
+                <?php
+                    echo $_SESSION['nombre_us'];
+                ?>
+            </b>
+            <div class = "alert alert-success text-center" id = "pass-span" style='display:none;'>
+                <span>
+                    <i class = "fas fa-check"></i>
+                    Se ha cambiado el Password
+                </span>
+              </div>
+              <div class = "alert alert-danger text-center m-1" id = "nopass-span" style ="display:none;">
+                <span>
+                    <i class = "fas fa-times m-1">
+                    </i>
+                    No se ha cambiado el Password
+                </span>
+              </div>
+            <form id = "form-pass">
+                <div class = "input-group mb-3">
+                    <div class = "input-group-prepend">
+                        <span class = "input-group-text"><i class ="fas fa-unlock-alt"></i></span>
+                    </div>
+                    <input id = "old_pass" type = "password" class = "form-control" placeholder="Ingrese password actual">
+                </div>
+                <div class = "input-group mb-3">
+                    <div class = "input-group-prepend">
+                        <span class ="input-group-text"><i class = "fas fa-lock"></i></span>
+                    </div>
+                    <input id = "new_pass" type = "text" class = "form-control" placeholder = "Ingrese password nueva">
+                </div>
+
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cerrar</button>
+        <button type="submit" class="btn bg-gradient-primary">Save changes</button>
+      </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Final del modal cambiar pass -->
+
+
+
+<!-- Inicio del modal de cambiar avatar -->
+<div class="modal fade" id="cambiarAvatar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Cambiar Avatar</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class = "text-center">
+              <img id ="avatar-img1" src = "../img/avatar04.png" class ="profile-user-img img-fluid img-circle">
+          </div>
+          <div class = "text-center">
+              <b>
+                  <?php
+                      echo $_SESSION['nombre_us'];
+                  ?>
+              </b>
+              <div class = "alert alert-success text-center" id = "avatar-span" style='display:none;'>
+                  <span>
+                      <i class = "fas fa-check"></i>
+                      Se ha cambiado el Avatar
+                  </span>
+                </div>
+                <div class = "alert alert-danger text-center m-1" id = "noavatar-span" style ="display:none;">
+                  <span>
+                      <i class = "fas fa-times m-1">
+                      </i>
+                      No se ha cambiado el Avatar
+                  </span>
+                </div>
+              <form id = "form-avatar" enctype="multipart/form-data">
+                  <div class = "input-group mb-3 ml-5 mt-2">
+                      <input class ="input-group" name = "avatar" type ="file">
+                      <input type = "hidden" name = "funcion" value = "cambiar-avatar">
+                  </div>
+  
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cerrar</button>
+          <button type="submit" class="btn bg-gradient-primary">Guardar</button>
+        </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- Final del modal de cambiar avatar -->
+
 
   <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -38,7 +154,10 @@ if($_SESSION['us_tipo']==2)
                       <div class = "card card-success card-outline">
                           <div class = "card-body box-profile">
                               <div class ="text-center">
-                                  <img src = "../img/avatar04.png" class = "profile-user-img img-fluid img-circle">
+                                  <img id = "avatar-img2" src = "../img/avatar04.png" class = "profile-user-img img-fluid img-circle">
+                              </div>
+                              <div class = "text-center mt-1">
+                                  <button class ="btn btn-primary btn-sm" data-toggle="modal" data-target="#cambiarAvatar">Cambiar Avatar</button>
                               </div>
                               <input type = "hidden" id = "id_usuario" value = "<?php echo $_SESSION['usuario'] ?>">
                               <h3 id = "nombre_us" class = "profile-username text-center text-success">
@@ -57,6 +176,7 @@ if($_SESSION['us_tipo']==2)
                                       <b style ="color: #0b7300">Tipo Usuario</b>
                                       <span class ="float-right badge badge-primary" id="administrador"></span>
                                   </li>
+                                  <button type = "button" class ="btn btn-block btn-outline-warning btn-sm" data-target="#cambioPassword" data-toggle = "modal">Cambiar Password</button>
                               </ul>
                           </div>
                       </div>
@@ -107,6 +227,13 @@ if($_SESSION['us_tipo']==2)
                             <span>
                                 <i class = "fas fa-check"></i>
                                 Editado
+                            </span>
+                          </div>
+                          <div class = "alert alert-danger text-center m-1" id = "sin_guardar" style ="display:none;">
+                            <span>
+                                <i class = "fas fa-times m-1">
+                                </i>
+                                No se puede
                             </span>
                           </div>
                               <form class = "form-horizontal" id = "form-usuario"> 

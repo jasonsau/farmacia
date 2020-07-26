@@ -155,6 +155,11 @@ a:hover{
     background-position: right;
 }
 
+#mostrar-pass{
+    outline: none !important;
+    box-lines: none !important;
+    border-radius: none;
+}
 
 /*Responsive para tables y celulares*/
 /*Tablest*/
