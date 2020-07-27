@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-if($_SESSION['us_tipo']==2)
+if($_SESSION['us_tipo']==4 || $_SESSION['us_tipo']==2)
 {
     include_once 'layouts/header.php';
 ?>

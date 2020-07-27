@@ -94,5 +94,10 @@ class Usuario
             return $this->objetos;
         }
     }
+
+ /*    function crearUsuario($nombre, $apellido, $dni, $fecha, $password, $id)
+    {
+        $sql = "INSERT INTO usuario"
+    } */
 } 
  ?>

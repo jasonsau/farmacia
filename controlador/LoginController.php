@@ -12,7 +12,10 @@ include_once '../modelo/Usuario.php';
                 header('Location: ../vista/adm_catalago.php');
             break;
             case 3:
-                header('Location: ../vista/tec_catalago.php');
+                header('Location: ../vista/adm_catalago.php');
+            break;
+            case 4: 
+                header('Location: ../vista/adm_catalago.php');
             break;
         }
     }
@@ -37,7 +40,10 @@ include_once '../modelo/Usuario.php';
                     header('Location: ../vista/adm_catalago.php');
                 break;
                 case 3:
-                    header('Location: ../vista/tec_catalago.php');
+                    header('Location: ../vista/adm_catalago.php');
+                break;
+                case 4:
+                    header('Location: ../vista/adm_catalago.php');
                 break;
             }
         }

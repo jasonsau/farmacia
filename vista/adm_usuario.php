@@ -1,6 +1,6 @@
 <?php
 session_start();
-if($_SESSION['us_tipo']==2)
+if($_SESSION['us_tipo']==4 || $_SESSION['us_tipo']==2 || $_SESSION['us_tipo']==3)
 {
     include_once 'layouts/header.php';
 ?>
@@ -9,7 +9,7 @@ if($_SESSION['us_tipo']==2)
 include_once 'layouts/nav.php'
 ?>
 
-<!-- Inicio del modal de cambiar avatar -->
+<!-- Inicio del modal de crearUsuario -->
 <div class="modal fade" id="crear-usuario" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -54,6 +54,18 @@ include_once 'layouts/nav.php'
                           </label>
                           <input id = "password" type = "pass" class = "form-control" placeholder = "Ingrese su password" required>
                       </div>
+                      <div class = "form-group">
+                        <label style ="display: block;">
+                            Sexo
+                        </label>
+                        <div style ="display: block;">
+                            <input id = "masculino" type = "radio"><label>Masculino</label>
+                        </div>
+                        <div style ="display: block;">
+                            <input id = "femenino" type = "radio" ><label>Femenino</label>
+                        </div>
+                        
+                    </div>
               </div>
               <div class ="card-footer">
                   <button id = "buscar-usuario" type = "submit" class = "btn bg-gradient-primary float-right m-1">Guardar</button>
@@ -73,8 +85,17 @@ include_once 'layouts/nav.php'
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Gestion Usuario<button type = "button" data-toggle ="modal" data-target = "#crear-usuario" class = "btn bg-gradient-primary ml-2">Crar usuario</button></h1>
-          </div>
+                <h1>
+                    Gestion Usuario
+                     <?php if($_SESSION['us_tipo']!=3){ ?>
+                    <button type = "button" data-toggle ="modal" data-target = "#crear-usuario" class = "btn bg-gradient-primary ml-2">
+                        Crear usuario
+                    </button>
+                    <?php }; ?> 
+                </h1>
+                <input type = "hidden" id ="tipo_us" value="<?php echo $_SESSION['us_tipo'] ?>">
+                <input type ="hidden" id ="pkUsuario" value = "<?php $_SESSION['usuario'] ?>">
+            </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="adm_catalago.php">Home</a></li>

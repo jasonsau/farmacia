@@ -25,7 +25,7 @@ if($_POST['funcion']=='buscar_usuario')
             'correo'=>$objeto->correo_us,
             'sexo'=>$objeto->sexo_us,
             'adicional'=>$objeto->adicional_us,
-            'avatar'=>$objeto->avatar
+            'avatar'=>$objeto->avatar,
         );
     }
 
@@ -136,10 +136,21 @@ if($_POST['funcion']=='buscarDatos')
             'correo'=>$objeto->correo_us,
             'sexo'=>$objeto->sexo_us,
             'adicional'=>$objeto->adicional_us,
-            'avatar'=>$objeto->avatar
+            'avatar'=>$objeto->avatar,
+            'tipoUsuario'=>$objeto->us_tipo
         );
     }
     $json_string = json_encode($json);
     return print $json_string;
+}
+if($_POST['funcion']=='crearUsuario')
+{
+    $nombre = $_POST['nombre'];
+    $apellido = $_POST['apellido'];
+    $dni = $_POST['dni'];
+    $fecha = $_POST['fecha'];
+    $password = $_POST['password'];
+    $id = $_POST['id'];
+    $usuario->crearUsuario($nombre, $apellido, $dni, $fecha, $password, $id);
 }
 ?> 
