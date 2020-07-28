@@ -11,7 +11,7 @@ $(document).ready(function(){
             let template='';
             usuario.forEach(usuario => {
                 template+=`
-                <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch">
+                <div id_usuario="${usuario.idUsuario}" class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch">
               <div class="card bg-light">
                 <div class="card-header text-muted border-bottom-0">
                   ${usuario.tipo}
@@ -37,22 +37,30 @@ $(document).ready(function(){
                   <div class="text-right">`;
                 if(tipoUsuario==4)
                 {
-                  if(usuario.tipoUsuario!=4)
-                  { 
-                    template+=`
-                    <button class ="btn-danger btn mr-1">
-                      <i class ="fas fa-window-close mr-1"></i>Eliminar
-                    </button>
-                    `;
-                  }
-                  if(usuario.tipoUsuario==3)
-                  {
-                    template+=`
-                    <button class ="btn btn-primary ml-1">
-                      <i class ="fas fa-window-close mr-1"></i>Ascender
-                    </button>
-                    `;
-                  }
+                    if(usuario.tipoUsuario!=4)
+                    { 
+                        template+=`
+                        <button class ="btn-danger btn mr-1">
+                        <i class ="fas fa-window-close mr-1"></i>Eliminar
+                        </button>
+                        `;
+                    }
+                    if(usuario.tipoUsuario==3)
+                    {
+                        template+=`
+                        <button class ="ascender btn btn-primary ml-1" data-toggle = "modal" data-target = "#confirmar">
+                        <i class ="fas fa-sort-amount-up mr-1"></i>Ascender
+                        </button>
+                        `;
+                    }
+                    if(usuario.tipoUsuario==2)
+                    {
+                        template+=`
+                        <button class ="descender btn btn-secondary ml-1" data-toggle = "modal" data-target = "#confirmar">
+                        <i class ="fas fa-sort-amount-down mr-1"></i>Descender
+                        </button>
+                        `;
+                    }
                 }
                 else
                 {
@@ -89,17 +97,38 @@ $(document).ready(function(){
     });
 
     $('#form-crear-usuario').submit(e=>{
-      let nombre = $('#nombre').val();
-      let apellido =$('#apellidos').val();
-      let dni = $('#dni').val();
-      let password = $('#password').val();
-      let fecha = $('#fecha').val();
-      let id = $('#pkUsuario');
-      funcion ="crearUsuario";
-      $.post('../controlador/UsuarioController.php',{funcion, id, nombre, apellido, dni, password, fecha, }, (response)=>{
+        let nombre = $('#nombre').val();
+        let apellido =$('#apellidos').val();
+        let dni = $('#dni').val();
+        let password = $('#password').val();
+        let fecha = $('#fecha').val();
 
+        funcion ="crearUsuario";
+        $.post('../controlador/UsuarioController.php',{funcion, nombre, apellido, dni, password, fecha}, (response)=>{
+            if(response == "guardado")
+            {
+                $('#guardar').hide('slow');
+                $('#guardar').show(1000);
+                $('#guardar').hide(2000);
+                $('#form-crear-usuario').trigger('reset'); 
+                buscarDatos();
+            }
+            else
+            {
+                $('#sin_guardar').hide('slow');
+                $('#sin_guardar').show(1000);
+                $('#sin_guardar').hide(2000);
+                $('#form-crear-usuario').trigger('reset');
+            }
       });
       e.preventDefault();
+        
+    });
+    $(document).on('click','.ascender', (e)=>{
+        const elemento = $(this)[0].activeElement.parentElement.parentElement.parentElement.parentElement;
+        console.log(elemento);
     });
 
 });
+
+

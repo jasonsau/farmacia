@@ -1,6 +1,6 @@
 <?php
 session_start();
-if($_SESSION['us_tipo']==4 || $_SESSION['us_tipo']==2 || $_SESSION['us_tipo']==3)
+if($_SESSION['us_tipo']==4 || $_SESSION['us_tipo']==2)
 {
     include_once 'layouts/header.php';
 ?>
@@ -14,6 +14,20 @@ include_once 'layouts/nav.php'
     <div class="modal-dialog">
       <div class="modal-content">
           <div class ="card card-success">
+            <div class = "alert alert-success text-center" id = "guardar" style='display:none;'>
+                <span>
+                    <i class = "fas fa-check"></i>
+                        Se ha guardado con exito
+                </span>
+              </div>
+              <div class = "alert alert-danger text-center m-1" id = "sin_guardar" style ="display:none;">
+                <span>
+                    <i class = "fas fa-times m-1">
+                    </i>
+                    No se ha guardado el usuario
+                </span>
+              </div>
+
               <div class = "card-header">
                   <h3 class = "card-title">Crear usuario</h3>
                   <button class ="close" data-dismiss = "modal" aria-label = "close">
@@ -54,17 +68,58 @@ include_once 'layouts/nav.php'
                           </label>
                           <input id = "password" type = "pass" class = "form-control" placeholder = "Ingrese su password" required>
                       </div>
-                      <div class = "form-group">
-                        <label style ="display: block;">
-                            Sexo
-                        </label>
-                        <div style ="display: block;">
-                            <input id = "masculino" type = "radio"><label>Masculino</label>
+                                  </div>
+              <div class ="card-footer">
+                  <button id = "buscar-usuario" type = "submit" class = "btn bg-gradient-primary float-right m-1">Guardar</button>
+                  <button type = "button" data-dismiss = "modal" class = "btn btn-outline-secondary float-right m-1">Cerrar</button>
+              </div>
+            </form>
+          </div>
+      </div>
+    </div>
+</div>
+
+<!-- Final del modal crear usuario -->
+
+<!-- Inicio del modal ascender  -->
+<div class="modal fade" id="confirmar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+          <div class ="card card-success">
+            <div class = "alert alert-success text-center" id = "ascender" style='display:none;'>
+                <span>
+                    <i class = "fas fa-check"></i>
+                        Se ha ascendido con exito
+                </span>
+              </div>
+              <div class = "alert alert-danger text-center m-1" id = "sin_ascender" style ="display:none;">
+                <span>
+                    <i class = "fas fa-times m-1">
+                    </i>
+                        No se ha ascendido
+                </span>
+              </div>
+              <div class = "card-header">
+                  <h3 class = "card-title">Confirmar</h3>
+                  <button class ="close" data-dismiss = "modal" aria-label = "close">
+                      <span aria-hidden="true">
+                          &times;
+                      </span>
+                  </button>
+              </div>
+              <div class = "card-body">
+
+                  <span>Necesitamos su password para confirmar</span>
+                  <form class = "" id ="form-ascender">
+                    <div class = "input-group mb-3">
+                        <div class = "input-group-prepend">
+                            <span class = "input-group-text">
+                                <i class = "fas fa-unlock-alt"></i>
+                            </span>
                         </div>
-                        <div style ="display: block;">
-                            <input id = "femenino" type = "radio" ><label>Femenino</label>
-                        </div>
-                        
+                        <input type = "password" class = "form-input" placeholder = "Ingrese su password aqui">
+                        <input type = "hidden" id = "id_user">
+                        <input type = "hidden" id = "id_funcion">
                     </div>
               </div>
               <div class ="card-footer">
@@ -77,7 +132,9 @@ include_once 'layouts/nav.php'
     </div>
 </div>
 
-<!-- Final del modal -->
+<!-- Final del modal confirmar -->
+ 
+
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->

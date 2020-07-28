@@ -95,9 +95,21 @@ class Usuario
         }
     }
 
- /*    function crearUsuario($nombre, $apellido, $dni, $fecha, $password, $id)
+    function comprobarDni($dni)
     {
-        $sql = "INSERT INTO usuario"
-    } */
+        $sql = "SELECT dni_us FROM usuario WHERE dni_us=:dni";
+        $query = $this->acceso->prepare($sql);
+        $query->execute(array(':dni'=>$dni));
+        $this->objetos = $query->fetchall();
+        return $this->objetos;
+    }
+
+    function crearUsuario($nombre, $apellido, $dni, $password, $edad, $tipo, $avatar)
+    {
+        $sql = "INSERT INTO usuario(nombre_us, apellidos_us, dni_us, edad, contrasena_us, us_tipo, avatar) VALUES(:nombre, :apellido, :dni, :fecha, :pass, :tipo, :avatar)";
+        $query = $this->acceso->prepare($sql);
+        $query->execute(array(':nombre'=>$nombre, ':apellido'=>$apellido, ':dni'=>$dni, ':fecha'=>$edad, ':pass'=>$password, ':tipo'=>$tipo, ':avatar'=>$avatar));
+
+    } 
 } 
  ?>

@@ -126,6 +126,7 @@ if($_POST['funcion']=='buscarDatos')
         $edad = $nacimiento->diff($fechaActual);
         $edad_years = $edad->y;
         $json[]=array(
+            'idUsuario'=>$objeto->id_usuario,
             'nombre'=>$objeto->nombre_us,
             'apellido'=>$objeto->apellidos_us,
             'edad'=>$edad_years,
@@ -148,9 +149,20 @@ if($_POST['funcion']=='crearUsuario')
     $nombre = $_POST['nombre'];
     $apellido = $_POST['apellido'];
     $dni = $_POST['dni'];
-    $fecha = $_POST['fecha'];
     $password = $_POST['password'];
-    $id = $_POST['id'];
-    $usuario->crearUsuario($nombre, $apellido, $dni, $fecha, $password, $id);
+    $edad = $_POST['fecha'];
+    $tipo = 3;
+    $avatar = '../img/logo.png';
+    $objeto=$usuario->comprobarDni($dni);
+
+    if(empty($objeto))
+    {
+        $usuario->crearUsuario($nombre, $apellido, $dni, $password, $edad, $tipo, $avatar);
+        return print "guardado";
+    }
+    else
+    {
+        return print "noGuardado";
+    }
 }
 ?> 
