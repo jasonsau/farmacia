@@ -165,4 +165,55 @@ if($_POST['funcion']=='crearUsuario')
         return print "noGuardado";
     }
 }
+if($_POST['funcion'] == 'ascender')
+{
+    $pass = $_POST['pass'];
+    $id = $_POST['id_usuario'];
+    $tipoAs = $_POST['tipoAs']; 
+    $resul = $usuario->comprobarPass($idUsuario, $pass);
+    if($resul)
+    {
+        $usuario->ascenderODescenderUsuario($id, $tipoAs);
+        return print "hecho";
+    }
+    else
+    {
+        return print "nohecho"; 
+    }
+}
+if($_POST['funcion'] == 'descender')
+{
+    $tipoDes=$_POST['tipoDes'];
+    $pass = $_POST['pass'];
+    $id = $_POST['id_usuario'];
+    
+    $resul = $usuario->comprobarPass($idUsuario, $pass);
+    if($resul)
+    {
+        $usuario->ascenderODescenderUsuario($id, $tipoDes);
+
+        return print "hecho";
+    }
+    else
+    {
+        return print "nohecho"; 
+        
+    }    
+}
+if($_POST['funcion'] == 'eliminar')
+{
+    $id = $_POST['id_usuario'];
+    $pass = $_POST['pass'];
+    $resul = $usuario->comprobarPass($idUsuario, $pass);
+    if($resul)
+    {
+        $usuario->eliminarUsuario($id);
+        return print "eliminado";
+    }
+    else
+    {
+        return print $id;
+
+    }
+}
 ?> 

@@ -81,22 +81,22 @@ include_once 'layouts/nav.php'
 
 <!-- Final del modal crear usuario -->
 
-<!-- Inicio del modal ascender  -->
+<!-- Inicio del modal confirmar-->
 <div class="modal fade" id="confirmar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
           <div class ="card card-success">
-            <div class = "alert alert-success text-center" id = "ascender" style='display:none;'>
+            <div class = "alert alert-success text-center" id = "alert-ascender" style='display:none;'>
                 <span>
                     <i class = "fas fa-check"></i>
-                        Se ha ascendido con exito
+                        Se ha realizado la accion con exito
                 </span>
               </div>
-              <div class = "alert alert-danger text-center m-1" id = "sin_ascender" style ="display:none;">
+              <div class = "alert alert-danger text-center m-1" id = "alert-sin-ascender" style ="display:none;">
                 <span>
                     <i class = "fas fa-times m-1">
                     </i>
-                        No se ha ascendido
+                       No se ha realizado la accion adecuadamente 
                 </span>
               </div>
               <div class = "card-header">
@@ -110,20 +110,20 @@ include_once 'layouts/nav.php'
               <div class = "card-body">
 
                   <span>Necesitamos su password para confirmar</span>
-                  <form class = "" id ="form-ascender">
+                  <form id ="form-confirmar">
                     <div class = "input-group mb-3">
                         <div class = "input-group-prepend">
                             <span class = "input-group-text">
                                 <i class = "fas fa-unlock-alt"></i>
                             </span>
                         </div>
-                        <input type = "password" class = "form-input" placeholder = "Ingrese su password aqui">
+                        <input id = "pass-confirmar" type = "password" class = "form-input" placeholder = "Ingrese su password aqui">
                         <input type = "hidden" id = "id_user">
                         <input type = "hidden" id = "id_funcion">
                     </div>
               </div>
               <div class ="card-footer">
-                  <button id = "buscar-usuario" type = "submit" class = "btn bg-gradient-primary float-right m-1">Guardar</button>
+                  <button id = "btn-confirmar" type = "submit" class = "btn bg-gradient-primary float-right m-1">Guardar</button>
                   <button type = "button" data-dismiss = "modal" class = "btn btn-outline-secondary float-right m-1">Cerrar</button>
               </div>
             </form>

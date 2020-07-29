@@ -111,5 +111,35 @@ class Usuario
         $query->execute(array(':nombre'=>$nombre, ':apellido'=>$apellido, ':dni'=>$dni, ':fecha'=>$edad, ':pass'=>$password, ':tipo'=>$tipo, ':avatar'=>$avatar));
 
     } 
+
+        
+    function ascenderODescenderUsuario($id, $tipo)
+    {
+        $sql = "UPDATE usuario SET us_tipo=:tipo WHERE id_usuario=:id";
+        $query = $this->acceso->prepare($sql);
+        $result=$query->execute(array(':tipo'=>$tipo, ':id'=>$id));
+        if($result)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    function eliminarUsuario($id)
+    {
+        $sql = "DELETE FROM usuario WHERE id_usuario=:id";
+        $query = $this->acceso->prepare($sql);
+        $result = $query->execute(array(':id'=>$id));
+        if($result)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 } 
  ?>
