@@ -10,12 +10,26 @@ $(document).ready(function(){
             const usuario = JSON.parse(response);
             let template='';
             usuario.forEach(usuario => {
+                console.log(response);
                 template+=`
                 <div id_usuario="${usuario.idUsuario}" class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch">
               <div class="card bg-light">
-                <div class="card-header text-muted border-bottom-0">
-                  ${usuario.tipo}
-                </div>
+                <div class="card-header text-muted border-bottom-0">`;
+                if(usuario.tipoUsuario ==4)
+                {
+                        template+=`<h1 class ="badge badge-danger">${usuario.tipo}</h1>`;
+                }
+                if(usuario.tipoUsuario ==3)
+                {
+                    template+=`<h1 class = "badge badge-info">${usuario.tipo}</h1>`
+
+                }
+                if(usuario.tipoUsuario == 2)
+                {
+                    template +=`<h1 class = "badge badge-warning">${usuario.tipo}</h1>`;
+                }
+
+                template+=`</div>
                 <div class="card-body pt-0">
                   <div class="row">
                     <div class="col-7">
@@ -91,7 +105,7 @@ $(document).ready(function(){
         }
         else
         {
-            buscarDatos();
+            buscarDatos(valor);
         }
     });
 
