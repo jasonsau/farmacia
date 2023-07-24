@@ -1,9 +1,11 @@
 pipeline {
-    agent { docker { image 'php:8.1.11-alpine'} }
+    agent 'jenkins205'
     stages {
         stage ('build') {
             steps {
                 sh 'php --version'
+                sh 'pwd'
+                sh 'ls -la'
             }
         }
     }
